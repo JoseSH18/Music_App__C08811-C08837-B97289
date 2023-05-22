@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Image, Carousel } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+
 import axios from "axios";
-import {Link} from 'react-router-dom'
+
 
 const endpoint = 'http://localhost:8000/api';
 
-function DetalleArtista() {
-const { id } = useParams();
+function DetalleArtista({ artistaId }) {
+  const { selectedArtistaId, handleShowSearch, handleArtistaClick} = artistaId;
+
 const [artista, setArtista] = useState(null);
 
 useEffect(() => {
 const fetchArtista = async () => {
 try {
-const response = await axios.get(`${endpoint}/detalle-artista/${id}`);
+const response = await axios.get(`${endpoint}/detalle-artista/${selectedArtistaId}`);
 console.log(response.data);
 setArtista(response.data.artist);
 } catch (error) {
@@ -21,7 +22,7 @@ console.error(error);
 }
 };
 fetchArtista();
-}, [id]);
+}, [selectedArtistaId]);
 
 if (!artista) {
 return <div className="text-danger">Cargando <i className="fa-solid fa-spinner fa-spin-pulse"></i></div>;
@@ -29,13 +30,17 @@ return <div className="text-danger">Cargando <i className="fa-solid fa-spinner f
 const topTracksSorted = [...artista.top_tracks].sort((a, b) => b.popularity - a.popularity);
 return (
 <Container>
-<Link to="#" className="float-left" onClick={() => window.history.back()}>&larr; Volver atrás</Link>
-  <h1>Detalle de artista {artista.nombre}</h1>
+<button className="button-transparent link-back" onClick={() => {
+                  handleArtistaClick(null);
+                  handleShowSearch();
+                  }}
+      >&larr; Volver atrás</button>
+  <h1 className="mb-3">Detalle de artista {artista.nombre}</h1>
 <Row>
 <Col md={4}>
 <Image src={artista.imagen} alt={artista.nombre} thumbnail fluid width={150}/>
 </Col>
-<Col md={8}>
+<Col md={8} className="mb-5">
 <h1>{artista.nombre}</h1>
 <p>{artista.seguidores} seguidores</p>
 <p>Géneros: {artista.generos.join(", ")}</p>
@@ -48,7 +53,7 @@ return (
 <h2>Albums: </h2>
 <Carousel className="mb-2">
             {artista.albums.map((album) => (
-              <Carousel.Item key={album.id}>
+              <Carousel.Item className="carousel-item-margin" key={album.id}>
                 <p>Nombre: {album.name}</p>
                 <img src={album.images[0].url} alt={album.name} width={150} />
               </Carousel.Item>
@@ -61,7 +66,7 @@ return (
 <h2>Canciones top: </h2>
 <Carousel className="mb-2">
             {topTracksSorted.map((track, index) => (
-              <Carousel.Item key={track.id}>
+              <Carousel.Item className="carousel-item-margin" key={track.id}>
                 <p>Top: {index + 1}</p>
                 <p>Nombre: {track.name}</p>
                 <p>Popularidad: {track.popularity}</p>

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Container, Button, Form, Carousel } from "react-bootstrap";
 import axios from "axios";
-import {Link} from 'react-router-dom'
+
 const endpoint = 'http://localhost:8000/api'
   
-function BuscarArtista() { 
+function BuscarArtista({onSelectArtistaId}) { 
 
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,10 +32,14 @@ function BuscarArtista() {
     }
     
   };
-
+  const { handleArtistaClick, handleCloseSearch, handleShowHome } = onSelectArtistaId;
   return (
     <Container>
-      <Link to="#" className="float-left" onClick={() => window.history.back()}>&larr; Volver atrás</Link>
+      <button className="button-transparent link-back" onClick={() => {
+                  handleCloseSearch();
+                  handleShowHome();
+                  }}
+      >&larr; Volver atrás</button>
       <Form onSubmit={handleSearch}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Buscar artista:</Form.Label>
@@ -57,12 +61,17 @@ function BuscarArtista() {
       <Carousel>
         {artistasConInfo.length > 0 ? (
           artistasConInfo.map((artista) => (
-            <Carousel.Item key={artista.id}>
+            <Carousel.Item className="carousel-item-margin" key={artista.id}>
               <h2>{artista.nombre}</h2>
               {artista.imagen && (
-                <Link to={`/detalleArtista/${artista.id}`}>
-                  <img src={artista.imagen} alt={artista.nombre} width={150} />
-                </Link>
+
+                <button className="button-transparent" onClick={() => {
+                  handleArtistaClick(artista.id);
+                  handleCloseSearch();
+                  }}>
+                <img src={artista.imagen} alt={artista.nombre} width={150} />
+                </button>
+                
               )}
             </Carousel.Item>
           ))

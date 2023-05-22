@@ -53,7 +53,7 @@ h2{
      background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: overlay;
     padding-top: 2rem;
-    height: 25vh;
+    height: 30vh;
     z-index: 10;
     max-width: 90%;
     left: 0;
@@ -83,10 +83,10 @@ h2{
     background-image: linear-gradient(-35deg, #e65a41 0%, #ac2abd 33%, #e65a41 33%, #ac2abd 66%, #e65a41 66%, #ac2abd 100%);
 }
 .body .center-segments{
-    height: 5vh;
+   
     margin: 8% 5%;
     max-width: 90%;
-    font-size: 15px;
+    font-size: 30px;
     margin-bottom: 10%;
 }
 .title2{
@@ -158,19 +158,30 @@ h2{
      /* espacio entre las celdas */
      padding-bottom: 10%;
 }
+.section-album .image-container{
+    width: 50%;
+}
+.section-album .text-container {
+    width: 50%;
+    overflow-wrap: break-word;
+
+}
 .section-album .div-album-text{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
     height: 100%;
-    font-size: 4em;
+    
+    
+   
   }
+
 .section-album .image-album{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
+    width: 100%;
     height: 100%;
 
 
@@ -180,19 +191,15 @@ h2{
 }
 .center-slider{
     width: 100%;
-    overflow: hidden;
+
     margin-top: 5%;
     padding-bottom: 5%;
 }
 .section-album .text-album{
     font-family: 'Castoro Titling', cursive;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: clamp(8px, 1vw, 18px);
+
+    font-size: clamp(8px, 2vw, 30px);
     color: #0e910e;
-    
-    
 }
 .section-album .text-album:hover{
     color: rgb(220, 135, 236);
@@ -211,19 +218,7 @@ h2{
     width: 100%;
 
 }
-@keyframes slide{
-    0%{margin-left: 0%;}
-    20%{margin-left: 0%;}
 
-    25%{margin-left: -100%;}
-    45%{margin-left: -100%;}
-
-    50%{margin-left: -200%;}
-    70%{margin-left: -200%;}
-
-    75%{margin-left: -300%;}
-    100%{margin-left: -300%;}
-}
 .section-album .image-album:hover{
     filter: opacity(70%);
     box-shadow: 0 0 20px #515585;
@@ -301,6 +296,17 @@ h2{
     background-clip: text;
     color: transparent;
 }
+.carousel-item-margin{
+    margin-bottom: 15%;
+}
+.button-transparent{
+    border: transparent;
+    background-color: transparent;
+}
+.link-back{
+    color: rgb(35, 35, 236);
+    text-decoration: underline rgb(35, 35, 236);
+}
 @media screen and (min-width: 768px) {
     header .fa-solid{
         font-size: 25px;
@@ -365,7 +371,7 @@ h2{
     }
 
     .body .center-segments{
-        margin-bottom: 15%;
+        margin-bottom: 10%;
         font-size: 25px;
     }
       .body .section-courier{
@@ -414,12 +420,14 @@ h2{
     
         margin-left: 7%;
         }
-        .section-album .text-album{
-            font-size: 25px;
-        }
+        .section-album .album-item{
+            margin-bottom: 5%;
+          }
     .body .footer{
         display: none;
     }
-
+    .carousel-item-margin{
+        margin-bottom: 5%;
+    }
     
 }

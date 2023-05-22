@@ -20,7 +20,7 @@ class MusicController extends Controller
         'query' => [
             'q' => $query,
             'type' => 'artist',
-            'limit' => 50
+            'limit' => 10
         ],
         'headers' => [
             'Authorization' => 'Bearer ' . $this->obtenerToken(),
