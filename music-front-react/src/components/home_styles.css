@@ -67,21 +67,7 @@ h2{
     border-radius: 10px;
     background-image: url("./images/albumcover.jpg");
   }
-.banner .button-banner{
-    background-image: linear-gradient(-35deg, #e0ab5b 0%, #d688c5 33%, #e0ab5b 33%, #d688c5 66%, #e0ab5b 66%, #d688c5 100%);
-    clip-path: polygon(0 50%, 10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%); /* forma personalizada */
-    background-color: #007bff; /* color de fondo */
-    color: #000000; /* color del texto */
-    width: 100px;
-    height: 20px;
-    font-size: 10px;
-    display: block;
-    margin-left: 5%;
-    margin-top: 5%;
-}
-.banner .button-banner:hover{
-    background-image: linear-gradient(-35deg, #e65a41 0%, #ac2abd 33%, #e65a41 33%, #ac2abd 66%, #e65a41 66%, #ac2abd 100%);
-}
+
 .body .center-segments{
    
     margin: 8% 5%;
@@ -360,11 +346,7 @@ h2{
         max-width: 150px;
         font-size: 50px;
     }
-    .banner.button-banner{
-        width: 200px;
-        height: 40px;
-        font-size: 20px;
-    }
+
     .div-segments .fa-solid{
         font-size: 400%;
         

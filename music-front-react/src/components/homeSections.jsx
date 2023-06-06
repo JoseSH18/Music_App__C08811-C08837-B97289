@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleArrowRight, faCircleArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Container, Col, Row } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import {Carousel} from 'react-bootstrap';
 import bruno from './images/bruno.jpg'
@@ -9,7 +9,8 @@ import weeknd from './images/weeknd.jpg'
 import alan from './images/alan.jpg'
 const endpoint = 'http://localhost:8000/api';
 
-const HomeSections = () => {
+const HomeSections = ({handleAlbum}) => {
+  const { handleAlbumClick, handleCloseHome} = handleAlbum;
     const [albums, setAlbums] = useState([]);
 
     useEffect(() => {
@@ -27,9 +28,6 @@ const HomeSections = () => {
       <h2 className='title2'>
         Neue Musik <i className="fa-solid fa-star"></i>
       </h2>
-    </Col>
-    <Col>
-      <Button className='button-banner'>Free Download</Button>
     </Col>
   </Row>
 </Container>
@@ -95,16 +93,24 @@ const HomeSections = () => {
         <Carousel.Item key={album.id} className='album-item'>
   <div className='center-album'>
     <div className='image-container'>
-      <img
-        className='image-album'
-        src={album.imagen}
-        alt={album.nombre}
-      />
+    <img className='image-album' src={album.imagen} alt={album.nombre}/>
+
     </div>
     <div className='text-container'>
       <Carousel.Caption className='div-album-text'>
-        <span className='span-segments text-album'>Artist: {album.artista}</span>
-        <span className='span-segments text-album'>Album: {album.nombre.split('(')[0]}</span>
+      <span className='span-segments text-album'>Artist: {album.artista}</span>
+      {album.nombre && (
+
+<button className="button-transparent" onClick={() => {
+  handleAlbumClick(album.id);
+  handleCloseHome();
+  }}>
+ <span className='span-segments text-album'>Album: {album.nombre.split('(')[0]}</span>
+</button>
+
+)}
+       
+        
         <span className='span-segments text-album'>Released on {album.release_date}</span>
       </Carousel.Caption>
     </div>

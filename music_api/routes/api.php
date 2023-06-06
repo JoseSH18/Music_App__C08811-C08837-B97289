@@ -21,4 +21,5 @@ Route::controller(MusicController::class)->group(function (){
     Route::get('/buscar-artista/{nombre}', 'buscarArtista')->name('api.buscar-artista');
     Route::get('/detalle-artista/{id}', 'detalleArtista')->name('api.detalle-artista');
     Route::get('/top-albums', 'obtenerTopAlbums')->name('api.top-albums');
+    Route::get('/detalle-album/{id}', 'detalleAlbum')->name('api.detalle-album');
 });

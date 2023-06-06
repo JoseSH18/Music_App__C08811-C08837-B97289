@@ -152,6 +152,22 @@ public function obtenerTopAlbums() {
     return compact('albums');
 }
 
+public function detalleAlbum(Request $request, $albumId)
+{
+    $client = new Client();
+
+    $response = $client->request('GET', 'https://api.spotify.com/v1/albums/' . $albumId, [
+        'headers' => [
+            'Authorization' => 'Bearer ' . $this->obtenerToken(),
+            'Accept' => 'application/json'
+        ]
+    ]);
+
+    $album = json_decode($response->getBody());
+
+    return compact('album');
+}
+
     private function obtenerToken()
     {
         $clientId = env('SPOTIFY_CLIENT_ID');

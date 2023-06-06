@@ -7,7 +7,7 @@ import axios from "axios";
 const endpoint = 'http://localhost:8000/api';
 
 function DetalleArtista({ artistaId }) {
-  const { selectedArtistaId, handleShowSearch, handleArtistaClick} = artistaId;
+  const { selectedArtistaId, handleShowSearch, handleArtistaClick, handleAlbumClick} = artistaId;
 
 const [artista, setArtista] = useState(null);
 
@@ -55,7 +55,16 @@ return (
             {artista.albums.map((album) => (
               <Carousel.Item className="carousel-item-margin" key={album.id}>
                 <p>Nombre: {album.name}</p>
-                <img src={album.images[0].url} alt={album.name} width={150} />
+                {album.images[0].url && (
+
+                  <button className="button-transparent" onClick={() => {
+                    handleAlbumClick(album.id);
+                    handleArtistaClick(null);
+                    }}>
+                  <img src={album.images[0].url} alt={album.name} width={150} />
+                  </button>
+
+                  )}
               </Carousel.Item>
             ))}
 </Carousel>
